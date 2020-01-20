@@ -44,7 +44,7 @@ echo 'Reversed String' .strrev("This is reversed string,");
 
 echo '<hr>  <h4>String Slashes</h4>';
 
-$string4 = 'This is anch tag <a href="index.php">Link</a>';
+$string4 = 'This is anch tag <a href=\"index.php">Link</a>';
 $stringSlashes =htmlentities( addslashes($string4) );
 echo $stringSlashes;
 
