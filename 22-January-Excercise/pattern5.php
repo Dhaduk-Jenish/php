@@ -8,13 +8,15 @@ $row = 4;
 $col = $row-1;
 $number = 1;
 
-for ($i=1; $i <= $row; $i++) { 
-    for ($j=1; $j <= $col; $j++) { 
-        echo $number .'&nbsp;&nbsp;';
-        $number += $row;
+echo '<table border = 1px>';
+    for ($i=1; $i <= $row; $i++) { 
+        echo '<tr>';
+        for ($j=1; $j <= $col; $j++) { 
+            echo '<td>'  .$number .'</td>';
+            $number += $row;
+        }
+        echo '</tr>';
+        $number = 1 +$i;
     }
-    $number = 1 +$i;
-    echo '<br>'; 
-}
 
 ?>

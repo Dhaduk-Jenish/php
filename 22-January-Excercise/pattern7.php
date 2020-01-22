@@ -1,12 +1,15 @@
 <?php
 
+
+$row = 10;
+$col = 10;
 $number = 1;
 echo '<table>';
 
-for ($i=1; $i <= 10 ; $i++) { 
+for ($i=1; $i <= $row ; $i++) { 
     
     echo '<tr>';
-    for ($j=1; $j <=10; $j++) { 
+    for ($j=1; $j <= $col ; $j++) { 
         echo '<td>' .($i*$number) . '</td>';   
     $number++;
     }
