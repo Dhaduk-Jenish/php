@@ -1,0 +1,6 @@
+STRIG REPLACE :
+		"string replace is used to replace specified string to a new given string."
+		"substring replace is used to replace string with starting index of string and length of the
+		replaced string" 
+		->substring replace will replace some part of string not the whole string.
+
