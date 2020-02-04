@@ -74,7 +74,7 @@
         $connection = new mysqli("localhost", "root", "", "user_information");
             
         $query = "SELECT $fieldName FROM user where useer_id = $id";
-              
+            //   echo $query;
             $data = mysqli_query($connection , $query);
             if (mysqli_num_rows($data) > 0) { 
                     $row = mysqli_fetch_assoc($data); 

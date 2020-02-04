@@ -19,9 +19,7 @@
     <div class="main">
 
         <form action="" method="POST">
-            <div class="accountDetails" name="register[]">
-               
-                <h2>Account Details</h2>
+            <div name="register[]">
                     
                 <span>Prefix </span>
                     <?php    $prefix = ['Mr','Miss', 'Ms', 'Mrs', 'Dr']; ?>

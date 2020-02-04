@@ -19,12 +19,15 @@ function createArray($category){
                 $databaseArray[$fieldName] = $value;      
                 
                 break;
-            case 'meta_title':
+            case 'metatitle':
                 $databaseArray[$fieldName] = $value;      
                     
                 break;
             case 'parent':
-                $databaseArray['parent_catogory'] = $value;      
+                $databaseArray['cat_name'] = $value;    
+                if (isset($_GET['id'])) {
+                    $databaseArray['user_id'] = $_GET['id'];
+                }  
                         
                 break;
 
@@ -36,10 +39,10 @@ function createArray($category){
 if (isset($_POST['addcategory'])) {
     
     $categoryarr = createArray($_POST['category']);
-
-    insert('catogory', $categoryarr);
+    if(isset($_GET['id'])){
+        insert('category', $categoryarr);
+    }
 }
-
 function insert($table , $section_array){
         
     $connection = new mysqli("localhost", "root", "", "user_information");
@@ -48,16 +51,51 @@ function insert($table , $section_array){
     $values = "'".implode("','" ,$section_array)."'";
     
     $insertRow = "INSERT INTO $table ($fields) VALUES ($values)";
-    //echo $insertRow;
+    echo $insertRow;
    
     if(mysqli_query($connection , $insertRow)){
-    //echo "<script>window.location.href='login.php?id=$userid ' ;</script>";
+        $userid = $_GET['id'];
+    echo "<script>window.location.href='dashboard.php?id=$userid ' ;</script>";
           
-    }
-    else {
-        echo 'not inserted ' .mysqli_error($connection);
     }
 }
 
+
+function getValue($fieldName){
+    if (isset($_GET['updateCatId'])) {
+        
+    $id = $_GET['updateCatId'];
+    $connection = new mysqli("localhost", "root", "", "user_information");
+        
+    $query = "SELECT $fieldName FROM `category` where cat_id = $id";
+         //   echo $query;
+        $data = mysqli_query($connection , $query);
+        if (mysqli_num_rows($data) > 0) { 
+                $row = mysqli_fetch_assoc($data); 
+                    return $row[$fieldName];   
+     
+        }
+                    
+    }
+}
+
+if (isset($_GET['updateCatId'])) {
+    if (isset($_POST['category'])) {
+        $clean = createArray($_POST['category']);
+        update($clean);
+    }
+    
+}
+function update($cleanArray){
+    $connection = new mysqli("localhost", "root", "", "user_information");
+    $id = $_GET['updateCatId'];
+    foreach ($cleanArray as $key => $value) {
+        
+        $updateQuery = "UPDATE `category` SET $key = '$value' 
+                    WHERE cat_id = '$id'";
+        // echo $updateQuery. '<br>';
+        if(mysqli_query($connection, $updateQuery)){}
+    }
+}
 
 ?>

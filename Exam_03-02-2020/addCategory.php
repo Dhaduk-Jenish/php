@@ -3,33 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="ieedge">
     <title>Category</title>
     <style>
         .main{
             text-align : center;
         }
-     
-
     </style>
     <?php require_once "categoryAdd.php" ?>
 </head>
 <body>
     <div class="main">
-        <form action="dashboard.php" method="POST">
+        <form action="" method="POST">
             <div class="catogery" name="category[]">
                 <label >Title</label><br>
-                    <input type="text" name="category[title]"
+                    <input type="text" name="category[title]" value="<?=getValue('title')?>">
                     <br><br>
                     
                 <label >Content</label><br>
-                    <input type="text" name="category[content]"><br><br>
+                    <input type="text" name="category[content]"  value="<?=getValue('content')?>"><br><br>
 
                 <label>URL</label><br>
-                    <input type="url" name="category[url]"><br><br>
+                    <input type="url" name="category[url]"  value="<?=getValue('url')?>"><br><br>
                 
                 <label >Meta Title</label><br>
-                    <input type="text" name="category[meta_title]"><br><br>
+                    <input type="text" name="category[metatitle]"  value="<?=getValue('metatitle')?>"><br><br>
                 
                 <label > Parent Catogery</label> <br>
                     <select name="category[parent]" id="category">
