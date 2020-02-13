@@ -46,7 +46,9 @@
     if (isset($_POST['submit'])) {
         $userArray = createCleanArray($_POST['register']);
         
-        insert('user',$userArray);
+        if (!isset($_GET['id'])) {
+            insert('user',$userArray);
+        }
     }
 
     function insert($table , $section_array){
@@ -64,7 +66,7 @@
               
         }
         else {
-            echo 'Dublicate Record';
+            echo '<script>alert("Dublicate Record") </script>';
         }
     }
     function getValue($fieldName){
