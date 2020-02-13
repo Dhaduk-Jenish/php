@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use \Core\View;
+use App\Models\Postss;
 
 class Post extends \Core\controllers {
 
@@ -12,9 +13,11 @@ class Post extends \Core\controllers {
         //     'name' => 'Jenish',
         //     'colors' => ['red', 'green', 'blue']
         // ]);
+        $posts = Postss::getAll();
         View::rendorTemplate('Post/index.html', [
                 'name' => 'Jenish',
-                'colors' => ['red', 'green', 'white']
+                'colors' => ['red', 'green', 'white'],
+                'posts' => $posts
         ]);
     }
 }

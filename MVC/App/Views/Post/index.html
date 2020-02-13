@@ -3,6 +3,11 @@
 
 {% block body %}
 
-    <h1>Posts </h1>
+    <h1>Postss </h1>
+    
+    {% for post in posts %}
+    <p> Title :: {{ post.title }} </p>
+    <p> Content :: {{ post.content }} </p>
+    {% endfor %}
 
 {% endblock %}
