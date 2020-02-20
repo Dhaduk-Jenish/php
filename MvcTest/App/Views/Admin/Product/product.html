@@ -1,0 +1,31 @@
+{% extends "dashboardBase.html" %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+    <a href="../products/addProduct";
+     name='productAdd'> <input class="btn btn-primary" type="button" value="Add Product"></a>
+    <table class="table table-bordered text-center">
+        <tr>
+            <th>Id</th>
+            <th>Product Name</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th colspan="2">Action</th>
+
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{product.productId}}</td>
+            <td>{{product.productName}}</td>
+            <td><img src="../../{{product.image}}" alt="image" height="100" width="100">
+                </td>
+            <td>{{product.description}}</td>
+            <td><a class="btn btn-warning"
+                href="../../Admin/products/edit/{{product.productId}}">Edit</a></td>
+            <td><a class="btn btn-danger"
+                href="../../Admin/products/delete/{{product.productId}}">delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

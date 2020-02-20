@@ -1,0 +1,123 @@
+{% extends "dashboardBase.html" %}
+
+{% block title %}Product{% endblock %}
+{% block body %}
+{% if product.0 == 'set' %}
+    {% set btn = 'Update' %}
+    {% set action = '../update'%}
+{% else %}
+    {% set btn = 'Add' %}
+    {% set action = 'add'%}
+{% endif %}
+
+<div class="product" name="main">
+    <h2>Add Product</h2>
+    <div name="product[]" class="container">
+            <form action="{{ action }}" method="POST" enctype="multipart/form-data">
+            
+                <input type="hidden" name="productId" value="{{product.productId}}">
+                <div class="form-group row">
+                    <label for="productName" 
+                        class="col-sm-2 col-form-label" >Product Name : </label>
+                    <div  class="col-sm-10">
+                        <input type="text" class="form-control" name="product[productName]"
+                            id="productName" value="{{ product.productName }}" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="SKU" class="col-sm-2 col-form-label">SKU: </label>
+                    <div  class="col-sm-10">
+                        <input type="number" class="form-control" name="product[SKU]"
+                            id="SKU" value="{{ product.SKU }}" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="urlKey" class="col-sm-2 col-form-label">
+                        Url Key : </label>
+                    <div  class="col-sm-10">                    
+                        <input type="text" class="form-control" name="product[urlKey]"
+                            id="urlKey" value="{{ product.urlKey }}" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="image" class="col-sm-2 col-form-label">
+                        Image : </label>
+                    <div  class="col-sm-10">                    
+                        <input type="file" class="form-control" accept="image/*" name="image"
+                            id="image" >
+                    </div>
+                </div>
+                <div class="form-group row">
+                    {% if product.status %}
+                        {% set select1 = 'selected' %}
+                    {% else %}
+                        {% set select2 = 'selected'%}
+                    {% endif %}
+                    <label for="status" class="col-sm-2 col-form-label">
+                        status : </label>
+                    <div  class="col-sm-10">
+                        <select class="form-control" name="product[status]" id="status">
+                            <option value="1" {{ select1 }} >Available</option>
+                            <option value="0" {{ select2 }}>Not Available</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="description" class="col-sm-2 col-form-label">
+                        Description : </label>
+                    <div  class="col-sm-10">                    
+                        <textarea class="form-control" name="product[description]" cols="15" rows="5">
+                            {{ product.description }}
+                        </textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="shortDescription" class="col-sm-2 col-form-label">
+                        Short Description : </label>
+                    <div  class="col-sm-10">                    
+                        <input class="form-control" type="text" name="product[shortDescription]"
+                            id="shortDescription" 
+                            value="{{ product.shortDescription }}" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="price" class="col-sm-2 col-form-label">
+                        Price : </label>
+                    <div  class="col-sm-10">                    
+                        <input class="form-control" type="number" name="product[price]"
+                            id="price" value="{{ product.price }}" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="stock" class="col-sm-2 col-form-label">
+                        Stock : </label>
+                    <div  class="col-sm-10">                                        
+                        <input class="form-control" type="number" name="product[stock]"
+                            id="stock" value="{{ product.stock }}" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="category" class="col-sm-2 col-form-label">
+                        Category</label>
+                    <div  class="col-sm-10">                    
+                        <select class="form-control" name="category[]" id="category"
+                            multiple>
+                            {% for category in categories %}
+                                <option value="{{category.categoryId}}">
+                                        {{category.categoryName}}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <input class="btn btn-primary col-md-2" type="submit" value="{{btn}}" 
+                        name="addProduct" id="add">
+                </div>
+            
+            </form>
+        </div>
+    </div>
+    
+{% endblock %}      

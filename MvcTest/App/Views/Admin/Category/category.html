@@ -1,0 +1,37 @@
+{% extends "dashboardBase.html" %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+
+    <a href="../categories/addCategories";
+     name='categoryAdd'> <input class="btn btn-primary" type="button" value="Add Category"></a>
+    <table class="table table-bordered text-center">
+        <tr>
+            <th>Id</th>
+            <th>Category Name</th>
+            <th>Image</th>
+            <th>Status</th>
+            <th>Description</th>
+            <th colspan="2">Action</th>
+
+        </tr>
+        {% for categories in categories %}
+        <tr>
+            <td>{{categories.categoryId}}</td>
+            <td>{{categories.categoryName}}</td>
+            <td><img src="../../{{categories.image}}" height="100" width="100"
+                alt="image"></td>
+            <td>{{categories.status}}</td>
+            <td>{{categories.description}}</td>
+            <td><a class="btn btn-warning" 
+                href="../../Admin/categories/edit/{{categories.categoryId}}">Edit</a>
+            </td>
+            <td>
+                <a class="btn btn-danger"
+                href="../../Admin/categories/delete/{{categories.categoryId}}">delete</a></td>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

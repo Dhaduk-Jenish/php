@@ -1,0 +1,38 @@
+<h1>{{cmsData.pageTitle}}</h1>
+
+<p>{{cmsData.content}}</p>
+
+{% if status == 'set' %}
+    {% for productData in productData %}
+    <a 
+        href="/cybercom/MvcTest/public/Product/view/{{productData.urlKey}}">
+        <div class="card" style="width: 12rem; display: inline-block;">
+            <img class="card-img-top" src="../../{{productData.image}}" alt="image"
+                height="150">
+            <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text"><b>{{productData.productName}}</b></p>
+            <p class="card-text"><b>&#8377;:{{productData.price}}</b></p>
+            <a href="/cybercom/MvcTest/public/Product/view/{{productData.urlKey}}" class="btn btn-primary">View</a>
+            </div>
+        </div>
+    </a>
+    
+    {% endfor %}
+{% endif %}
+
+{% if status == 'product' %} 
+
+    <div class="card" style="width: 15rem;">
+        <img class="card-img-top" src="../../{{productData.image}}" alt="image"
+            height="200">
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+          <p class="card-text"><b>{{productData.productName}}</b></p>
+          <p class="card-text"><b>&#8377;:{{productData.price}}</b></p>
+          <p class="card-text"><b>{{productData.description}}</b></p>
+          
+        </div>
+    </div>
+   
+{% endif %}
