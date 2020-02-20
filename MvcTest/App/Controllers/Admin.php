@@ -15,7 +15,7 @@ class Admin extends \Core\Controller
         
             
             if ($_POST['userName'] == 'jenish99' && $_POST['password'] == 'jenish123') {
-                header("Location: http://localhost/cybercom/MvcTest/Public/admin/dashboard");
+                header("Location: http://localhost/cybercom/php/MvcTest/Public/admin/dashboard");
             }
             else {
                 echo "<script>alert('Invalid Details') </script>";  
