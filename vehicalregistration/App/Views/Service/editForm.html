@@ -8,26 +8,32 @@
 
 </head>
 <body>
-    <form action="/cybercom/php/vehicalregistration/public/dashboard/service" method="POST">
+        {% if set == 'set' %}
+            {% set btn = 'Update' %}
+            {% set action = 'update'%}
+        {% endif %}
+    {% if set == 'set' %}
+    {% for serviceData in serviceData %}
+    <form action="/cybercom/php/vehicalregistration/public/dashboard/{{action}}/{{serviceData.serviceId}}" method="POST">
             <div>
                 <label for="title">Title</label>
                      <input type="text" name='title' id="title"
-                       value="">
+                       value="{{serviceData.title}}">
             </div>
             <div>
                 <label for="vehicalNumber">Vehical Number</label>
                      <input type="text" name='vehicalNumber' id="vehicalNumber"
-                       value="" maxlength="10">
+                       value="{{serviceData.vehicalNumber}}" maxlength="10">
             </div>
             <div>
                 <label for="licenceNumber">Licence Number</label>
                      <input type="text" name='licenceNumber' id="licenceNumber"
-                       value="">
+                       value="{{serviceData.licenceNumber}}">
             </div>
             <div>
                 <label for="date">Date</label>
                      <input type="date" name='date' id="date"
-                       value="">
+                       value="{{serviceData.date}}">
             </div>
             <div>
                 <label for="timeSlot">Time Slot</label>
@@ -42,7 +48,7 @@
             <div>
                 <label for="vehicalIssue">Vehial Issue</label>
                      <input type="text" name='vehicalIssue' id="vehicalIssue"
-                       value="">
+                       value="{{serviceData.vehicalIssue}}">
             </div>
             <div>
                 <label for="serviceCenter">Service Center</label>
@@ -53,11 +59,19 @@
                         <option value="center-4">center-4</option>
                     </select>
             </div>
-
+            <div>
+                <label for="status">Status</label>
+                <select name="status" id="status">
+                    <option value="pending">Pending</option>
+                    <option value="approve">Approve</option>
+                </select>
+            </div>
 
             <div class="button" id="register">
-                    <input type="submit" value="add" id="addService">
+                    <input type="submit" value="{{btn}}" id="addService">
             </div>
+        {% endfor %}
+        {% endif %}
     </form>
 
 </body>

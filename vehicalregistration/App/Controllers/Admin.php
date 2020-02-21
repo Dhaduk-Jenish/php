@@ -16,12 +16,16 @@ class Admin extends \Core\Controller
         View::renderTemplate('Admin/index.html',['serviceData'=>$serviceData]);
     }
 
+    public function form()
+    {
+        View::renderTemplate('service/serviceForm.html');
+    }
     public function edit()
     {
         $id = $this->route_params['id'];
         $serviceData = dbOperation::getData('serviceRegistrations','serviceId',$id);
 
-        View::renderTemplate('service/serviceForm.html',
+        View::renderTemplate('service/editForm.html',
                 ['serviceData'=> $serviceData , 'set'=>'set']);
     }
 

@@ -31,9 +31,8 @@ class Dashboard extends \Core\Controller
     {  
         session_start();
         $serviceArray = $this->serviceArray($_POST);
-        $serviceArray['status'] = 'pending';
         $serviceArray['userId'] =  $_SESSION['user_id'];
-        $id = $this->route_params['id'];
+        // $id = $this->route_params['id'];
 
         $check = dbOperation::update('serviceregistrations', 'serviceId', $id,$serviceArray);
 
@@ -77,6 +76,9 @@ class Dashboard extends \Core\Controller
                 case 'serviceCenter':     
                     $serviceArray[$fieldName] = $value;      
 
+                break;
+                case 'status':
+                    $serviceArray[$fieldName] = $value;
                 break;
             }
         } 

@@ -12,6 +12,10 @@ class Login extends \Core\Controller
     {
         View::renderTemplate('Login/loginForm.html');
     }
+    public function form()
+    {
+        View::renderTemplate('Login/serviceForm.html');
+    }
 
     public function loginValidate()
     {
@@ -22,19 +26,25 @@ class Login extends \Core\Controller
         // print_r($loginArray);
         $check = dbOperation::getAll('users');
         foreach ($check as $key => $value) {
+            // echo $value['email'];
                 if ($value['email'] == $loginArray['email'] && $value['password'] == $loginArray['password'])  {
-                    session_start();
-                    $_SESSION['user_id'] = $value['userId'];
-
-                    $data = dbOperation::getAll('serviceRegistrations'); 
-
-                    View::renderTemplate('dashboard/dashboard.html',
-                        ['serviceData'=>$data, 'status' => 'set']);            
+                    $flag = 1;   
                 }
                 else{
-                    echo "Invalid Details";
-                    View::renderTemplate('login/loginForm.html');
+                    $flag = 0;
                 }
+        }
+        if ($flag == 1 ) {
+            session_start();
+            $_SESSION['user_id'] = $value['userId'];
+            $data = dbOperation::getData('serviceRegistrations', 'userId', $value['userId']); 
+
+            View::renderTemplate('dashboard/dashboard.html',
+            ['serviceData'=>$data, 'status' => 'set']);
+        }
+        else{
+            echo "invalid Details";
+            View::renderTemplate('login/loginForm.html');
         }
 
     }
