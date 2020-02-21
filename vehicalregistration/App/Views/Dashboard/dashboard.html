@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>    
+</head>
+<body>
+    <a href="/cybercom/php/vehicalregistration/App/Views/Service/serviceForm.html">
+    <button name="service" id="service">
+        Service Registration</button>
+    </a>
+    <table border="1px">
+        <tr>
+            <th>Title</th>
+            <th>Vehical Number</th>
+            <th>Licence Number</th>
+            <th>Date</th>
+            <th>Time Slot</th>
+            <th>Service Center</th>
+            <th>status</th>
+        </tr>
+        {% for serviceData in serviceData %}
+        <tr>
+                <td>{{serviceData.title}}</td>
+                <td>{{serviceData.vehicalNumber}}</td>
+                <td>{{serviceData.licenceNumber}}</td>
+                <td>{{serviceData.date}}</td>
+                <td>{{serviceData.timeSlot}}</td>
+                <td>{{serviceData.serviceCenter}}</td>
+                <td>{{serviceData.status}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>
